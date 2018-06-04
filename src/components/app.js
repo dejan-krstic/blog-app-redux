@@ -6,6 +6,7 @@ import placeholder from "../../resources/assets/img/placeholder.png";
 import HomePage from '../containers/pages/HomePage'
 import SinglePostPage from '../containers/pages/SinglePostPage'
 import NewPostPage from '../containers/pages/NewPostPage'
+import PostsNew from '../containers/pages/CreateNewPostPage'
 import SingleAuthorPage from '../containers/pages/SingleAuthorPage'
 import AboutPage from './pages/AboutPage'
 import AuthorsPage from '../containers/pages/AuthorsPage'
@@ -18,7 +19,8 @@ export default (props) => {
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
-        <Route path='/posts/new' component={NewPostPage} />
+        <Route exact path='/posts/new' component={NewPostPage} />
+        <Route path="/new" component={PostsNew} />
         <Route path='/posts/:id' component={SinglePostPage} />
         <Route path='/authors/:id' component={SingleAuthorPage}/>
         <Route path='/authors' component={AuthorsPage} />
