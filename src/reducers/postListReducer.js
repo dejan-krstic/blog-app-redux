@@ -14,6 +14,7 @@ export default (state = INITIAL_STATE, action) => {
             const postList = action.payload.data.map(post => new Post(post.title, post.body, post.id, post.authorId));
             return { ...state, postList }
         case GET_AUTHORS:
+        console.log(action.payload);
             const authors = action.payload.authors.data.map((author, i) => new Author(author.name, author.id, action.payload.authorPosts[i].data))
             return { ...state, authors }
         case SINGLE_POST:
@@ -21,7 +22,6 @@ export default (state = INITIAL_STATE, action) => {
             const singlePost = new SinglePost(postData.title, postData.body, authorName, postData.userId, sameAuthorPosts);
             return { ...state, singlePost }
         case SINGLE_AUTHOR:
-            console.log(action.payload);
             const { authorImage, authorData } = action.payload
             const singleAuthor = {
                 name: new Name(authorImage.data.results[0].picture.large, authorData.data.name, authorData.data.username, authorData.data.email, authorData.data.phone),

@@ -41,13 +41,14 @@ export const getAuthors = async () => {
 }
 
 
+// redux thunk version 
 
 // export const getAuthors = () => {
-//     // const request = axios.get(`${url}users`);
+//     const request = axios.get(`${url}users`);
 //     console.log("request index actions ", );
 //     return (dispatch) => {
 //         console.log("request index actions ", request);
-//         axios.get(`${url}users`).then(response => {
+//         request.then(response => {
 //                 console.log("request index actions response ", response);
 //                 const payload = response.data.map(author => axios.get(`${url}posts?userId=${author.id}`))
 //                 dispatch({
@@ -65,19 +66,30 @@ export const getAuthorById = async (authorId) => {
         payload: { authorData, authorImage }
     }
 }
-const postData = (url,title,body, config) => {
-             axios({
-            method: 'post',
-            url: url+config,
-            data: {
-                'title': title,
-                'body': body,
-            },
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-    }
+const postData = (url, title, body, config) => {
+    axios({
+        method: 'post',
+        url: url + config,
+        data: {
+            'title': title,
+            'body': body,
+        },
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+}
+
+export function createPost(props) {
+    console.log(props);
+    const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, props);
+
+    return {
+        type: CREATE_POST,
+        payload: request
+    };
+}
+
 
 
 

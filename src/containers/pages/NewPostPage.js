@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import data from '../../services/DataService'
 import { url } from '../../constants/constants'
+import _ from 'lodash'
+import { reduxForm } from 'redux-form'
 
 var beta = {};
-export default class NewPost extends Component {
+class NewPost extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -86,6 +88,12 @@ export default class NewPost extends Component {
         this.props.history.push('/')
     }
 
+
+
+
+
+
+
     render() {
         return (
             <React.Fragment>
@@ -131,3 +139,23 @@ export default class NewPost extends Component {
         )
     }
 }
+
+export default reduxForm({}, null, null )(NewPost);
+
+// function validate(values) {
+//     const errors = {};
+
+//     _.each(FIELDS, (type, field) => {
+//         if (!values[field]) {
+//             errors[field] = `Enter a ${field}`;
+//         }
+//     });
+
+//     return errors;
+// }
+
+// export default reduxForm({
+//     form: 'PostsNew',
+//     fields: _.keys(FIELDS),
+//     validate
+// }, null, { createPost })(PostsNew);
